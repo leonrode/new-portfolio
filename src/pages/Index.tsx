@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { Moon, Sun, Github, Linkedin, FileText, ExternalLink, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import GitHubActivity from "@/components/GitHubActivity";
 
 const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -117,6 +117,7 @@ const Index = () => {
                 <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
                 <a href="#experience" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Experience</a>
                 <a href="#projects" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
+                <a href="#activity" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Activity</a>
                 <a href="#interests" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Interests</a>
               </div>
               <Button
@@ -133,7 +134,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -167,7 +168,7 @@ const Index = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full -z-10 opacity-20 blur-xl"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-gray-500 to-gray-600 rounded-full -z-10 opacity-20 blur-xl"></div>
               </div>
             </div>
           </div>
@@ -182,10 +183,10 @@ const Index = () => {
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
             {experiences.map((exp, index) => (
               <div key={index} className="relative flex items-start mb-12">
-                <div className="absolute left-6 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900"></div>
+                <div className="absolute left-6 w-4 h-4 bg-gray-500 rounded-full border-4 border-white dark:border-gray-900"></div>
                 <div className="ml-16 space-y-2">
                   <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
-                  <p className="text-lg text-blue-600 dark:text-blue-400">{exp.company}</p>
+                  <p className="text-lg text-gray-600 dark:text-gray-400">{exp.company}</p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">{exp.dates}</p>
                   <ul className="mt-4 space-y-2">
                     {exp.achievements.map((achievement, i) => (
@@ -283,8 +284,16 @@ const Index = () => {
         </div>
       </section>
 
+      {/* GitHub Activity Section */}
+      <section id="activity" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">GitHub Activity</h2>
+          <GitHubActivity />
+        </div>
+      </section>
+
       {/* Interests Section */}
-      <section id="interests" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="interests" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Interests</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
