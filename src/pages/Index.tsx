@@ -1,9 +1,11 @@
+
 import { useState, useEffect } from "react";
 import { Moon, Sun, Github, Linkedin, FileText, ExternalLink, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
 import GitHubActivity from "@/components/GitHubActivity";
 
 const Index = () => {
@@ -104,131 +106,115 @@ const Index = () => {
   ];
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="font-semibold text-xl text-gray-900 dark:text-white">
-              Alex Chen
-            </div>
-            <div className="flex items-center space-x-8">
-              <div className="hidden md:flex space-x-8">
-                <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
-                <a href="#experience" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Experience</a>
-                <a href="#projects" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
-                <a href="#activity" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Activity</a>
-                <a href="#interests" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Interests</a>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2"
-              >
-                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-            </div>
-          </div>
+    <div className={`min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
+      {/* Fixed header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-2xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-xl font-medium text-gray-900 dark:text-white">Alex Chen</h1>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2"
+          >
+            {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                Synthesizing code and the cosmos
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                I'm a Computer Science and Physics student at Stony Brook University, exploring the intersection of software engineering and physical phenomena. I love building elegant solutions to complex problems, from scalable web applications to computational simulations.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button className="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100">
-                  <FileText className="mr-2 h-4 w-4" />
-                  View Resume
-                </Button>
-                <Button variant="outline" className="border-gray-300 dark:border-gray-600">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </Button>
-                <Button variant="outline" className="border-gray-300 dark:border-gray-600">
-                  <Linkedin className="mr-2 h-4 w-4" />
-                  LinkedIn
-                </Button>
-              </div>
+      {/* Main content */}
+      <main className="max-w-2xl mx-auto px-6 pt-20 pb-16">
+        {/* About Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                alt="Alex Chen"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative">
-                <div className="w-80 h-80 rounded-full overflow-hidden shadow-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                    alt="Alex Chen"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -inset-4 bg-gradient-to-r from-gray-500 to-gray-600 rounded-full -z-10 opacity-20 blur-xl"></div>
-              </div>
-            </div>
+            <h2 className="text-4xl font-light text-gray-900 dark:text-white mb-4">
+              Synthesizing code and the cosmos
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl mx-auto">
+              Computer Science and Physics student at Stony Brook University, exploring the intersection of software engineering and physical phenomena.
+            </p>
           </div>
-        </div>
-      </section>
+          
+          <div className="flex justify-center gap-4 mb-8">
+            <Button size="sm" className="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100">
+              <FileText className="mr-2 h-4 w-4" />
+              Resume
+            </Button>
+            <Button variant="outline" size="sm">
+              <Github className="mr-2 h-4 w-4" />
+              GitHub
+            </Button>
+            <Button variant="outline" size="sm">
+              <Linkedin className="mr-2 h-4 w-4" />
+              LinkedIn
+            </Button>
+          </div>
+          
+          <p className="text-center text-gray-500 dark:text-gray-400">
+            alex.chen@stonybrook.edu
+          </p>
+        </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Experience</h2>
-          <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+        <Separator className="my-16" />
+
+        {/* Experience Section */}
+        <section className="py-8">
+          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">Experience</h3>
+          <div className="space-y-8">
             {experiences.map((exp, index) => (
-              <div key={index} className="relative flex items-start mb-12">
-                <div className="absolute left-6 w-4 h-4 bg-gray-500 rounded-full border-4 border-white dark:border-gray-900"></div>
-                <div className="ml-16 space-y-2">
-                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
-                  <p className="text-lg text-gray-600 dark:text-gray-400">{exp.company}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{exp.dates}</p>
-                  <ul className="mt-4 space-y-2">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="text-gray-600 dark:text-gray-300 flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
+              <div key={index} className="border-l-2 border-gray-200 dark:border-gray-700 pl-6">
+                <div className="space-y-2 mb-4">
+                  <h4 className="text-lg font-medium text-gray-900 dark:text-white">{exp.title}</h4>
+                  <p className="text-gray-600 dark:text-gray-400">{exp.company}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-500">{exp.dates}</p>
                 </div>
+                <ul className="space-y-2">
+                  {exp.achievements.map((achievement, i) => (
+                    <li key={i} className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      • {achievement}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Separator className="my-16" />
+
+        {/* Projects Section */}
+        <section className="py-8">
+          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">Projects</h3>
+          <div className="space-y-6">
             {projects.map((project) => (
               <Dialog key={project.id}>
                 <DialogTrigger asChild>
-                  <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
-                    <div className="relative overflow-hidden rounded-t-lg">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-                    </div>
+                  <Card className="cursor-pointer hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700">
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">{project.summary}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="text-xs">
-                            {tech}
-                          </Badge>
-                        ))}
+                      <div className="flex gap-6">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-24 h-24 object-cover rounded"
+                        />
+                        <div className="flex-1">
+                          <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">{project.title}</h4>
+                          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{project.summary}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech) => (
+                              <Badge key={tech} variant="secondary" className="text-xs">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -281,50 +267,34 @@ const Index = () => {
               </Dialog>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* GitHub Activity Section */}
-      <section id="activity" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">GitHub Activity</h2>
+        <Separator className="my-16" />
+
+        {/* GitHub Activity Section */}
+        <section className="py-8">
+          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">GitHub Activity</h3>
           <GitHubActivity />
-        </div>
-      </section>
+        </section>
 
-      {/* Interests Section */}
-      <section id="interests" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Interests</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <Separator className="my-16" />
+
+        {/* Interests Section */}
+        <section className="py-8">
+          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">Interests</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {interests.map((interest, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center p-6 rounded-xl bg-white dark:bg-gray-900 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-800"
+                className="text-center p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
               >
-                <div className="text-4xl mb-3">{interest.icon}</div>
-                <p className="text-center font-medium text-gray-900 dark:text-white">{interest.name}</p>
+                <div className="text-2xl mb-2">{interest.icon}</div>
+                <p className="text-sm text-gray-700 dark:text-gray-300">{interest.name}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 dark:bg-black text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xl mb-6">Let's build something amazing together</p>
-          <p className="text-gray-400 mb-8">alex.chen@stonybrook.edu</p>
-          <div className="flex justify-center space-x-6">
-            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-              <Github className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-              <Linkedin className="h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </footer>
+        </section>
+      </main>
     </div>
   );
 };
