@@ -10,6 +10,7 @@ import GitHubActivity from "@/components/GitHubActivity";
 const Index = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  const [latestCommits, setLatestCommits] = useState<any[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,26 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+
+    wipProjects.forEach(async (proj) => {
+      const response = await fetch(`https://api.github.com/repos/${proj.shortUrl}/commits`);
+      const data = await response.json();
+
+      // @ts-ignore
+      const sorted = Array.from(data).sort((a, b) => new Date(b.commit.author.date).getTime() - new Date(a.commit.author.date).getTime());
+      const latest = sorted[0];
+      // @ts-ignore
+      const user = latest.author.login;
+      // @ts-ignore
+      const commit_message = latest.commit.message;
+      // @ts-ignore
+      const date = latest.commit.author.date;
+
+      setLatestCommits(prev => [...prev, { project: proj.title, text: commit_message, user: user, date: date }]);
+    });
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -186,7 +207,8 @@ const Index = () => {
         "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
       ],
       technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
-      githubUrl: "https://github.com/leonrode/qsim"
+      githubUrl: "https://github.com/leonrode/qsim",
+      shortUrl: "leonrode/qsim" // for fetching latest commits
     },
     {
       title: "web proxy in C",
@@ -198,7 +220,8 @@ const Index = () => {
         "application of sockets, DNS, HTTP, file IO",
       ],
       technologies: ["c", "make", "networking", "c sockets"],
-      githubUrl: "https://github.com/leonrode/web-proxy"
+      githubUrl: "https://github.com/leonrode/web-proxy",
+      shortUrl: "leonrode/web-proxy" // for fetching latest commits
     }
   ];
 
@@ -302,12 +325,14 @@ const Index = () => {
           <h3 className="text-2xl font-medium text-[--primary] mb-8">🚧 currently working on</h3>
           <div className="space-y-8">
             {wipProjects.map((proj, index) => (
-              <div className="flex items-start gap-4" key={index}>
+              <div className="flex items-start w-full gap-4" key={index}>
                 <div className="border-l-2 border-[--border] pl-6">
                   <div className="space-y-2 mb-4">
                     <div>
                       <h4 className="text-lg font-medium text-[--foreground]">{proj.title}</h4>
+                      
                       <p className="text-[--muted-foreground]">{proj.company}</p>
+                      
                     </div>
                     <p className="text-sm text-[--muted-foreground]">{proj.dates}</p>
                   </div>
@@ -327,12 +352,20 @@ const Index = () => {
                       ))}
                     </div>
                   )}
+                  
                   {proj.githubUrl && (
-                    <Button variant="outline" size="sm" asChild>
-                      <a href={proj.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4" />
-                      </a>
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="sm" asChild>
+                        <a href={proj.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4" />
+                        </a>
+                      </Button>
+                      {latestCommits.find(commit => commit.project === proj.title) && (
+                        <p className="text-[--muted-foreground] my-2 ">
+                          <span className="mr-2">🚀 {new Date(latestCommits.find(commit => commit.project === proj.title)?.date).toLocaleDateString()}</span> - <span className="italic">{latestCommits.find(commit => commit.project === proj.title)?.text}</span>
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>
