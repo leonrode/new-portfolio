@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from "react";
-import { Moon, Sun, Github, Linkedin, FileText, ExternalLink, Code2 } from "lucide-react";
+import { ArrowUp, Github, Linkedin, FolderGit2, ExternalLink, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,62 +8,55 @@ import { Separator } from "@/components/ui/separator";
 import GitHubActivity from "@/components/GitHubActivity";
 
 const Index = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const experiences = [
     {
-      title: "Research Assistant",
-      company: "Computational Physics Lab",
-      location: "Stony Brook University",
-      dates: "Sep 2023 - Present",
+      title: "agentic AI",
+      company: "NeuralSeek",
+      location: "Remote",
+      dates: "jun 2025 - present",
       achievements: [
-        "Developed Monte Carlo simulations for quantum systems using Python and NumPy",
-        "Optimized algorithms resulting in 40% faster computation times",
-        "Collaborated with PhD students on theoretical physics research"
-      ]
+        "developed internal and client-facing demos of an abstract document-based AI agent",
+        "collaborated with engineers to improve performance of web-based demo page"
+      ],
+      technologies: ["nextjs", "typescript", "agentic ai", "api dev", "web dev"],
+      image: "/neuralseek.jpeg"
     },
     {
-      title: "Software Engineering Intern",
-      company: "TechStart Inc.",
-      location: "New York, NY",
-      dates: "Jun 2023 - Aug 2023",
+      title: "conversational AI",
+      company: "Get Talky",
+      location: "Remote",
+      dates: "jun 2025 - present",
       achievements: [
-        "Built responsive web applications using React and TypeScript",
-        "Implemented RESTful APIs with Node.js and Express",
-        "Contributed to reducing page load times by 25%"
-      ]
-    },
-    {
-      title: "Teaching Assistant",
-      company: "Computer Science Department",
-      location: "Stony Brook University",
-      dates: "Jan 2023 - May 2023",
-      achievements: [
-        "Assisted 200+ students in Data Structures and Algorithms course",
-        "Conducted weekly lab sessions and office hours",
-        "Developed automated grading scripts using Python"
-      ]
+        "built advanced JavaScript APIs interfacing with NexHealth for synchronization with EHR systems",
+      ],
+      technologies: ["javascript", "node.js", "api dev"],
+      image: "/gettalky.jpeg"
     }
   ];
 
   const projects = [
     {
       id: 1,
-      title: "Quantum Simulator",
-      summary: "A high-performance quantum circuit simulator built with C++ and CUDA.",
-      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop",
-      technologies: ["C++", "CUDA", "Python", "OpenMP"],
-      description: "A comprehensive quantum circuit simulator capable of simulating up to 20 qubits with GPU acceleration. The project implements various quantum gates and algorithms including Shor's algorithm and Grover's search.",
-      role: "Lead Developer",
-      challenges: "Optimizing memory usage for large quantum states and implementing efficient GPU kernels for quantum gate operations.",
+      title: "quantum amplitude estimation",
+      summary: "quantum computing algorithm",
+      image: "/amplitude-est.png",
+      technologies: ["python", "jupyter", "quantum computing", "linear algebra", "physics"],
+      description: "implemented an algorithm to estimate a basis amplitude for a quantum state",
       liveDemo: "#",
       sourceCode: "#"
     },
@@ -72,11 +64,9 @@ const Index = () => {
       id: 2,
       title: "Smart Campus Navigator",
       summary: "An AI-powered mobile app for campus navigation and resource discovery.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      image: "/amplitude-est.png",
       technologies: ["React Native", "Firebase", "Python", "TensorFlow"],
       description: "A mobile application that uses computer vision and machine learning to help students navigate campus, find available study spaces, and locate resources in real-time.",
-      role: "Full-Stack Developer",
-      challenges: "Integrating real-time location services with computer vision for indoor navigation and optimizing the ML model for mobile devices.",
       liveDemo: "#",
       sourceCode: "#"
     },
@@ -87,8 +77,6 @@ const Index = () => {
       image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
       technologies: ["C++", "OpenMPI", "GLSL", "CMake"],
       description: "A distributed ray tracing system that leverages multiple cores and machines to render complex 3D scenes with realistic lighting, shadows, and reflections.",
-      role: "Graphics Programmer",
-      challenges: "Implementing efficient load balancing across distributed nodes and optimizing ray-object intersection algorithms.",
       liveDemo: "#",
       sourceCode: "#"
     }
@@ -105,83 +93,210 @@ const Index = () => {
     { name: "Chess", icon: "♟️" }
   ];
 
+  const wipProjects = [
+    {
+      title: "quantum circuit simulator in C",
+      company: "personal project",
+      dates: "may 2025 - present",
+      achievements: [
+        "building a simple quantum circuit simulator in pure C",
+        "implenting multi-qubit gates and implementing quantum algorithms",
+        "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
+      ],
+      technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
+      githubUrl: "https://github.com/leonrode/qsim"
+    },
+    {
+      title: "web proxy in C",
+      company: "personal project",
+      dates: "jun 2025 - present",
+      achievements: [
+        "building a simple web proxy in C",
+        "fowards HTTP GETs to a web server and caches returned objects in files",
+        "application of sockets, DNS, HTTP, file IO",
+      ],
+      technologies: ["c", "make", "networking", "c sockets"],
+      githubUrl: "https://github.com/leonrode/web-proxy"
+    }
+  ];
+
   return (
-    <div className={`min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
+    <div className="min-h-screen bg-[--background] ">
       {/* Fixed header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-2xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-medium text-gray-900 dark:text-white">Alex Chen</h1>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[--background] backdrop-blur-sm border-b border-[--border]">
+        <div className="w-screen md:max-w-2xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex justify-between items-center gap-4">
+            <img
+                  src="/headshot.jpg"
+                  alt="Leon Rode"
+                  className={`h-12 object-cover shadow-md shadow-[--border] rounded-full transition-all duration-300 ${isScrolled ? 'opacity-100 w-12 visible' : 'opacity-0 w-0 invisible'}`}
+                />
+            <h1 className="text-xl font-medium text-white">leon rode</h1>
+            <Button 
+                variant="ghost"
+                size="sm" 
+                className={`bg-transparent hover:bg-[--muted] backdrop-blur-sm border text-[--primary] transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
+                <a href="https://github.com/leonrode" target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4" />
+                </a>
+            </Button>
+            <Button 
+                variant="ghost"
+                size="sm"
+                className={`bg-transparent hover:bg-[--muted] backdrop-blur-sm border text-[--primary] transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
+                <a href="https://www.linkedin.com/in/leon-rode/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+            </Button>
+          </div>
+          {/* Scroll to top button */}
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setDarkMode(!darkMode)}
-            className="p-2"
+            onClick={scrollToTop}
+              className={`bg-transparent hover:bg-[--muted] backdrop-blur-sm border text-[--primary] transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}
           >
-            {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            <ArrowUp className="h-4 w-4" />
           </Button>
         </div>
       </header>
 
+
       {/* Main content */}
-      <main className="max-w-2xl mx-auto px-6 pt-20 pb-16">
+      <main className="w-screen md:max-w-3xl mx-auto px-6 pt-20 pb-16">
         {/* About Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 shadow-lg">
+        <section className="pt-16 pb-8">
+          <div className="text-center mb-8">
+            <div className="w-32 h-32 mx-auto mb-6">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                alt="Alex Chen"
-                className="w-full h-full object-cover"
+                src="/headshot.jpg"
+                alt="Leon Rode"
+                className="w-full h-full object-cover shadow-md shadow-[--border] hover:shadow-lg hover:shadow-[--border] transition-all duration-300 rounded-full"
               />
             </div>
-            <h2 className="text-4xl font-light text-gray-900 dark:text-white mb-4">
-              Synthesizing code and the cosmos
+            <h2 className="text-2xl font-light text-white mb-4">
+              leon rode '28
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl mx-auto">
-              Computer Science and Physics student at Stony Brook University, exploring the intersection of software engineering and physical phenomena.
+            <p className="text-lg text-gray-400 leading-relaxed max-w-xl mx-auto">
+             cs & physics @ stony brook honors college
             </p>
           </div>
           
           <div className="flex justify-center gap-4 mb-8">
-            <Button size="sm" className="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100">
-              <FileText className="mr-2 h-4 w-4" />
-              Resume
+            <Button size="sm" className="bg-white text-gray-900 hover:bg-gray-100">
+              <a className="flex items-center" href="#projects" >
+                <FolderGit2 className="mr-2 h-4 w-4" />
+                Projects
+              </a>
             </Button>
             <Button variant="outline" size="sm">
-              <Github className="mr-2 h-4 w-4" />
-              GitHub
+              <a className="flex items-center" href="https://github.com/leonrode" target="_blank" rel="noopener noreferrer">
+                <Github className="mr-2 h-4 w-4" />
+                GitHub  
+              </a>
             </Button>
             <Button variant="outline" size="sm">
-              <Linkedin className="mr-2 h-4 w-4" />
-              LinkedIn
+              <a className="flex items-center" href="https://www.linkedin.com/in/leon-rode/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="mr-2 h-4 w-4" />
+                LinkedIn
+              </a>
             </Button>
           </div>
           
-          <p className="text-center text-gray-500 dark:text-gray-400">
-            alex.chen@stonybrook.edu
+          <p className="text-center text-[--muted-foreground]">
+            me [at] leonro.de
           </p>
+        </section>
+
+        <Separator className="my-16" />
+
+        {/* Currently working on */}
+        <section className="py-8" id="projects">
+          <h3 className="text-2xl font-medium text-[--primary] mb-8">currently working on</h3>
+          <div className="space-y-8">
+            {wipProjects.map((proj, index) => (
+              <div className="flex items-start gap-4" key={index}>
+                <div className="border-l-2 border-[--border] pl-6">
+                  <div className="space-y-2 mb-4">
+                    <div>
+                      <h4 className="text-lg font-medium text-white">{proj.title}</h4>
+                      <p className="text-gray-400">{proj.company}</p>
+                    </div>
+                    <p className="text-sm text-gray-500">{proj.dates}</p>
+                  </div>
+                  <ul className="space-y-2 mb-4">
+                    {proj.achievements.map((achievement, i) => (
+                      <li key={i} className="text-gray-400 text-sm leading-relaxed">
+                        • {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                  {proj.technologies && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {proj.technologies.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                  {proj.githubUrl && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={proj.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-16" />
+
+        {/* GitHub Activity Section */}
+        <section className="py-8">
+          <h3 className="text-2xl font-medium text-[--primary] mb-8">activity</h3>
+          <GitHubActivity />
         </section>
 
         <Separator className="my-16" />
 
         {/* Experience Section */}
         <section className="py-8">
-          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">Experience</h3>
+          <h3 className="text-2xl font-medium text-white mb-8">work experience</h3>
           <div className="space-y-8">
             {experiences.map((exp, index) => (
-              <div key={index} className="border-l-2 border-gray-200 dark:border-gray-700 pl-6">
-                <div className="space-y-2 mb-4">
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white">{exp.title}</h4>
-                  <p className="text-gray-600 dark:text-gray-400">{exp.company}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">{exp.dates}</p>
+              <div className="flex items-start gap-4">
+                <img src={exp.image} alt={exp.company} className="w-16 h-16 object-cover rounded-lg" />
+                <div key={index} className="border-l-2 border-gray-700 pl-6">
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center gap-2">
+                      <div>
+                        <h4 className="text-lg font-medium text-white">{exp.title}</h4>
+                        <p className="text-gray-400">{exp.company}</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-500">{exp.dates}</p>
+                  </div>
+                  <ul className="space-y-2">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i} className="text-gray-400 text-sm leading-relaxed">
+                        • {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                  {exp.technologies && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {exp.technologies.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <ul className="space-y-2">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                      • {achievement}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
@@ -191,12 +306,12 @@ const Index = () => {
 
         {/* Projects Section */}
         <section className="py-8">
-          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">Projects</h3>
+          <h3 className="text-2xl font-medium text-white mb-8">projects</h3>
           <div className="space-y-6">
             {projects.map((project) => (
               <Dialog key={project.id}>
                 <DialogTrigger asChild>
-                  <Card className="cursor-pointer hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700">
+                  <Card className="cursor-pointer hover:shadow-md transition-shadow border border-gray-700">
                     <CardContent className="p-6">
                       <div className="flex gap-6">
                         <img
@@ -205,8 +320,8 @@ const Index = () => {
                           className="w-24 h-24 object-cover rounded"
                         />
                         <div className="flex-1">
-                          <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">{project.title}</h4>
-                          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{project.summary}</p>
+                          <h4 className="text-lg font-medium text-white mb-2">{project.title}</h4>
+                          <p className="text-gray-400 text-sm mb-3">{project.summary}</p>
                           <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech) => (
                               <Badge key={tech} variant="secondary" className="text-xs">
@@ -231,15 +346,7 @@ const Index = () => {
                     />
                     <div>
                       <h4 className="font-semibold text-lg mb-2">Description</h4>
-                      <p className="text-gray-600 dark:text-gray-300">{project.description}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-lg mb-2">My Role</h4>
-                      <p className="text-gray-600 dark:text-gray-300">{project.role}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-lg mb-2">Challenges & Solutions</h4>
-                      <p className="text-gray-600 dark:text-gray-300">{project.challenges}</p>
+                      <p className="text-gray-300">{project.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.map((tech) => (
@@ -271,25 +378,17 @@ const Index = () => {
 
         <Separator className="my-16" />
 
-        {/* GitHub Activity Section */}
-        <section className="py-8">
-          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">GitHub Activity</h3>
-          <GitHubActivity />
-        </section>
-
-        <Separator className="my-16" />
-
         {/* Interests Section */}
         <section className="py-8">
-          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">Interests</h3>
+          <h3 className="text-2xl font-medium text-white mb-8">Interests</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {interests.map((interest, index) => (
               <div
                 key={index}
-                className="text-center p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                className="text-center p-4 rounded-lg border border-gray-700 hover:bg-gray-900 transition-colors"
               >
                 <div className="text-2xl mb-2">{interest.icon}</div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">{interest.name}</p>
+                <p className="text-sm text-gray-300">{interest.name}</p>
               </div>
             ))}
           </div>

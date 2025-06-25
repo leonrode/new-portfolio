@@ -1,39 +1,47 @@
-
 import { useState, useEffect } from "react";
-import { Github } from "lucide-react";
+import { Github, LoaderCircle } from "lucide-react";
 
 const GitHubActivity = () => {
-  const [activityData, setActivityData] = useState<number[][]>([]);
+  const [numContributions, setNumContributions] = useState<number>(0);
+  const [activityData, setActivityData] = useState<{date: string, count: number, level: number}[][]>([]);
+  const [monthIndices, setMonthIndices] = useState<Record<number, number>>({});
+  const DAYS_BACK = window.matchMedia("(max-width: 767px)").matches ? 112 : 256;
 
-  // Generate mock GitHub activity data (7 days x 53 weeks = 371 days)
+  
   useEffect(() => {
-    const generateMockData = () => {
-      const weeks = 53;
-      const days = 7;
-      const data: number[][] = [];
-      
-      for (let week = 0; week < weeks; week++) {
-        const weekData: number[] = [];
-        for (let day = 0; day < days; day++) {
-          // Generate random activity levels (0-4)
-          const activity = Math.floor(Math.random() * 5);
-          weekData.push(activity);
-        }
-        data.push(weekData);
-      }
-      return data;
-    };
 
-    setActivityData(generateMockData());
+    (async () => {
+      const response = await fetch("https://github-contributions-api.jogruber.de/v4/leonrode?y=last");
+      const data = await response.json();
+      const contributions = data.contributions.slice(-DAYS_BACK, data.contributions.length);
+      let weeks = [];
+      for (let i = 0; i < DAYS_BACK; i += 7) {
+        weeks.push(contributions.slice(i, i + 7));
+      }
+
+      let count = contributions.reduce((acc, curr) => acc += curr.count, 0);
+
+      // we find the first week index that representes a new month
+      const m = {}
+      for (let i = 0; i < weeks.length - 1; i++) {
+        if (new Date(weeks[i][0].date).getMonth() !== new Date(weeks[i + 1][0].date).getMonth()) {
+          m[i] = new Date(weeks[i + 1][0].date).getMonth();
+        }
+      }
+      setNumContributions(count)
+      setMonthIndices(m);
+      setActivityData(weeks);
+
+    })();
   }, []);
 
   const getActivityColor = (level: number) => {
     const colors = [
-      "bg-gray-100 dark:bg-gray-800", // No activity
-      "bg-green-200 dark:bg-green-900", // Low activity
-      "bg-green-300 dark:bg-green-700", // Medium-low activity
-      "bg-green-400 dark:bg-green-500", // Medium-high activity
-      "bg-green-500 dark:bg-green-400", // High activity
+      "bg-accent", // No activity
+      "bg-green-900", // Low activity
+      "bg-green-700", // Medium-low activity
+      "bg-green-500", // Medium-high activity
+      "bg-green-400", // High activity
     ];
     return colors[level] || colors[0];
   };
@@ -41,20 +49,14 @@ const GitHubActivity = () => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  return (
+    return activityData.length > 0 ? (
     <div className="w-full max-w-4xl mx-auto">
       <div className="flex items-center gap-2 mb-4">
         <Github className="h-5 w-5" />
-        <span className="text-sm text-gray-600 dark:text-gray-400">alex.chen</span>
+        <span className="text-md text-[--muted-foreground]">leonrode - {numContributions} contributions in the last {DAYS_BACK === 256 ? "2⁸" : DAYS_BACK} days</span>
       </div>
       
-      <div className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-        {/* Month labels */}
-        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
-          {months.map((month) => (
-            <span key={month}>{month}</span>
-          ))}
-        </div>
+      <div className="bg-[--card] rounded-lg px-5 pb-6 pt-8 border border-[--border]">
         
         {/* Activity grid */}
         <div className="flex gap-1">
@@ -63,7 +65,7 @@ const GitHubActivity = () => {
             {days.map((day, index) => (
               <div
                 key={day}
-                className="h-3 flex items-center text-xs text-gray-500 dark:text-gray-400"
+                className="h-3 flex items-center text-xs text-[--muted-foreground]"
                 style={{ opacity: index % 2 === 0 ? 1 : 0 }}
               >
                 {index % 2 === 0 ? day : ""}
@@ -73,24 +75,27 @@ const GitHubActivity = () => {
           
           {/* Activity squares */}
           <div className="flex gap-1">
-            {activityData.map((week, weekIndex) => (
-              <div key={weekIndex} className="flex flex-col gap-1">
-                {week.map((activity, dayIndex) => (
-                  <div
-                    key={`${weekIndex}-${dayIndex}`}
-                    className={`w-3 h-3 rounded-sm ${getActivityColor(activity)} hover:ring-2 hover:ring-gray-400 dark:hover:ring-gray-600 transition-all cursor-pointer`}
-                    title={`${activity} contributions`}
-                  />
+                {activityData.map((week, weekIndex) => (
+                  <div className="flex flex-col gap-1 relative">
+                    <p className="text-xs text-[--muted-foreground] absolute -top-5 left-0">
+                      {Object.keys(monthIndices).includes(weekIndex.toString()) ? months[monthIndices[weekIndex]] : ""}
+                    </p>
+                    {week.map((activity, dayIndex) => (
+                    <div
+                      key={`${weekIndex}-${dayIndex}`}
+                      className={`w-3 h-3 m-[0.7px] rounded-sm ${getActivityColor(activity.level)} hover:ring-2 hover:ring-gray-600 transition-all cursor-pointer`}
+                      title={`${activity.count} contributions on ${activity.date}`}
+                    />
+                    ))}
+                  </div>
                 ))}
-              </div>
-            ))}
           </div>
         </div>
         
         {/* Legend */}
-        <div className="flex items-center justify-between mt-4 text-xs text-gray-500 dark:text-gray-400">
+        <div className="flex items-center justify-center mt-4 text-xs text-[--muted-foreground]">
           <span>Less</span>
-          <div className="flex gap-1">
+          <div className="flex gap-1 mx-8">
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
@@ -101,6 +106,11 @@ const GitHubActivity = () => {
           <span>More</span>
         </div>
       </div>
+    </div>
+  ) : (
+
+    <div className="flex items-center justify-center">
+      <LoaderCircle className="h-8 w-8 animate-spin" />
     </div>
   );
 };
