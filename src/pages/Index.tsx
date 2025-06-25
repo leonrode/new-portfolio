@@ -361,9 +361,11 @@ const Index = () => {
                         </a>
                       </Button>
                       {latestCommits.find(commit => commit.project === proj.title) && (
-                        <p className="text-[--muted-foreground] my-2 ">
-                          <span className="mr-2">🚀 {new Date(latestCommits.find(commit => commit.project === proj.title)?.date).toLocaleDateString()}</span> - <span className="italic">{latestCommits.find(commit => commit.project === proj.title)?.text}</span>
-                        </p>
+                        <div className="text-[--muted-foreground] text-sm my-2 flex items-center gap-2">
+                          🚀 <span className="hidden md:inline">{new Date(latestCommits.find(commit => commit.project === proj.title)?.date).toLocaleDateString()}</span>
+                          <span className="hidden md:inline">-</span>
+                          <span className="italic max-w-48 md:max-w-fit truncate">{latestCommits.find(commit => commit.project === proj.title)?.text}</span>
+                        </div>
                       )}
                     </div>
                   )}
