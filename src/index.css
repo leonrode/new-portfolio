@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: #090909;
+    --background: #060606;
     --foreground: #fafafa;
 
     --card: #0a0a0a;
@@ -45,5 +45,18 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

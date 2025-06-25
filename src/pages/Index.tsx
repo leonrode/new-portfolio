@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { ArrowUp, Github, Linkedin, FolderGit2, ExternalLink, Code2 } from "lucide-react";
+import { ArrowUp, Github, Linkedin, FolderGit2, ExternalLink, Code2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContentWithoutClose, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import GitHubActivity from "@/components/GitHubActivity";
 
 const Index = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +18,30 @@ const Index = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const sectionId = entry.target.getAttribute('data-section-id');
+          if (sectionId) {
+            if (entry.isIntersecting) {
+              setVisibleSections(prev => new Set(prev).add(sectionId));
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const sections = document.querySelectorAll('[data-section-id]');
+    sections.forEach(section => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   const scrollToTop = () => {
@@ -89,7 +114,7 @@ const Index = () => {
       summary: "local covid-19 case tracker + statistics",
       image: "/projects/westchester.png",
       technologies: ["nextjs", "tailwind", "aws lambda", "mongodb", "full stack"],
-      description: "built website as community service project to visualize covid-19 trends in westchester county, new york. the site collected data between november 2020 and december 2022, collecting case data for each town within the county on a daily basis, storing them in mongodb. the site was hosted on vercel and used aws lambda to fetch data from the new york state.",
+      description: "built website as community service project to visualize covid-19 trends in westchester county, new york. the site collected data regularly between november 2020 and december 2022, storing them in mongodb. the site was hosted on vercel and used aws lambda to fetch data from the new york state.",
       buttons: [
         { label: "view website", url: "https://westchestercovidtracker-com.vercel.app/", icon: "ExternalLink" },
         { label: "view source", url: "https://github.com/leonrode/westchestercovidtracker.com", icon: "Code2" }
@@ -146,7 +171,7 @@ const Index = () => {
       title: "The Organization Man",
       author: "William H. Whyte",
       cover: "/books/organization-man.jpg",
-      thoughts: "thorough description of the impact of mass organization on American society."
+      thoughts: "\"thorough description of the impact of mass organization on American society.\""
     },
   ];
 
@@ -188,7 +213,7 @@ const Index = () => {
                   alt="Leon Rode"
                   className={`h-12 object-cover shadow-md shadow-[--border] rounded-full transition-all duration-300 ${isScrolled ? 'opacity-100 w-12 visible' : 'opacity-0 w-0 invisible'}`}
                 />
-            <h1 className="text-xl font-medium text-white">leon rode</h1>
+            <h1 className="text-xl font-medium text-[--foreground]">leon rode</h1>
             <Button 
                 variant="ghost"
                 size="sm" 
@@ -231,16 +256,16 @@ const Index = () => {
                 className="w-full h-full object-cover shadow-md shadow-[--border] hover:shadow-lg hover:shadow-[--border] transition-all duration-300 rounded-full"
               />
             </div>
-            <h2 className="text-2xl font-light text-white mb-4">
+            <h2 className="text-2xl font-light text-[--foreground] mb-4">
               leon rode '28
             </h2>
-            <p className="text-lg text-gray-400 leading-relaxed max-w-xl mx-auto">
+            <p className="text-lg text-[--muted-foreground] leading-relaxed max-w-xl mx-auto">
              cs & physics @ stony brook university honors college
             </p>
           </div>
           
           <div className="flex justify-center gap-4 mb-8">
-            <Button size="sm" className="bg-white text-gray-900 hover:bg-gray-100">
+            <Button size="sm" className="bg-[--foreground] text-[--background] hover:bg-[--muted]">
               <a className="flex items-center" href="#projects" >
                 <FolderGit2 className="mr-2 h-4 w-4" />
                 Projects
@@ -268,7 +293,11 @@ const Index = () => {
         <Separator className="my-16" />
 
         {/* Currently working on */}
-        <section className="py-8" id="projects">
+        <section 
+          className={`py-8 fade-in-section ${visibleSections.has('wip') ? 'visible' : ''}`} 
+          id="projects"
+          data-section-id="wip"
+        >
           <h3 className="text-2xl font-medium text-[--primary] mb-8">🚧 currently working on</h3>
           <div className="space-y-8">
             {wipProjects.map((proj, index) => (
@@ -276,14 +305,14 @@ const Index = () => {
                 <div className="border-l-2 border-[--border] pl-6">
                   <div className="space-y-2 mb-4">
                     <div>
-                      <h4 className="text-lg font-medium text-white">{proj.title}</h4>
-                      <p className="text-gray-400">{proj.company}</p>
+                      <h4 className="text-lg font-medium text-[--foreground]">{proj.title}</h4>
+                      <p className="text-[--muted-foreground]">{proj.company}</p>
                     </div>
-                    <p className="text-sm text-gray-500">{proj.dates}</p>
+                    <p className="text-sm text-[--muted-foreground]">{proj.dates}</p>
                   </div>
                   <ul className="space-y-2 mb-4">
                     {proj.achievements.map((achievement, i) => (
-                      <li key={i} className="text-gray-400 text-sm leading-relaxed">
+                      <li key={i} className="text-[--muted-foreground] text-sm leading-relaxed">
                         • {achievement}
                       </li>
                     ))}
@@ -313,7 +342,10 @@ const Index = () => {
         <Separator className="my-16" />
 
         {/* GitHub Activity Section */}
-        <section className="py-8">
+        <section 
+          className={`py-8 fade-in-section ${visibleSections.has('activity') ? 'visible' : ''}`}
+          data-section-id="activity"
+        >
           <h3 className="text-2xl font-medium text-[--primary] mb-8">📊 activity</h3>
           <GitHubActivity />
         </section>
@@ -321,25 +353,28 @@ const Index = () => {
         <Separator className="my-16" />
 
         {/* Experience Section */}
-        <section className="py-8">
-          <h3 className="text-2xl font-medium text-white mb-8">💼 work experience</h3>
+        <section 
+          className={`py-8 fade-in-section ${visibleSections.has('experience') ? 'visible' : ''}`}
+          data-section-id="experience"
+        >
+          <h3 className="text-2xl font-medium text-[--foreground] mb-8">💼 work experience</h3>
           <div className="space-y-8">
             {experiences.map((exp, index) => (
               <div className="flex items-start gap-4">
                 <img src={exp.image} alt={exp.company} className="w-16 h-16 object-cover rounded-lg" />
-                <div key={index} className="border-l-2 border-gray-700 pl-6">
+                <div key={index} className="border-l-2 border-[--border] pl-6">
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2">
                       <div>
-                        <h4 className="text-lg font-medium text-white">{exp.title}</h4>
-                        <p className="text-gray-400">{exp.company}</p>
+                        <h4 className="text-lg font-medium text-[--foreground]">{exp.title}</h4>
+                        <p className="text-[--muted-foreground]">{exp.company}</p>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-500">{exp.dates}</p>
+                    <p className="text-sm text-[--muted-foreground]">{exp.dates}</p>
                   </div>
                   <ul className="space-y-2">
                     {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="text-gray-400 text-sm leading-relaxed">
+                      <li key={i} className="text-[--muted-foreground] text-sm leading-relaxed">
                         • {achievement}
                       </li>
                     ))}
@@ -362,13 +397,16 @@ const Index = () => {
         <Separator className="my-16" />
 
         {/* Projects Section */}
-        <section className="py-8">
-          <h3 className="text-2xl font-medium text-white mb-8">🛠️ projects</h3>
+        <section 
+          className={`py-8 fade-in-section ${visibleSections.has('projects') ? 'visible' : ''}`}
+          data-section-id="projects"
+        >
+          <h3 className="text-2xl font-medium text-[--foreground] mb-8">🛠️ projects</h3>
           <div className="space-y-6">
             {projects.map((project) => (
               <Dialog key={project.id}>
                 <DialogTrigger asChild>
-                  <Card className="cursor-pointer hover:shadow-md transition-shadow border border-gray-700">
+                  <Card className="cursor-pointer hover:shadow-md transition-shadow border border-[--border]">
                     <CardContent className="p-6">
                       <div className="flex gap-6">
                         <img
@@ -377,8 +415,8 @@ const Index = () => {
                           className="w-24 h-24 object-cover rounded"
                         />
                         <div className="flex-1">
-                          <h4 className="text-lg font-medium text-white mb-2">{project.title}</h4>
-                          <p className="text-gray-400 text-sm mb-3">{project.summary}</p>
+                          <h4 className="text-lg font-medium text-[--foreground] mb-2">{project.title}</h4>
+                          <p className="text-[--muted-foreground] text-sm mb-3">{project.summary}</p>
                           <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech) => (
                               <Badge key={tech} variant="secondary" className="text-xs">
@@ -391,7 +429,13 @@ const Index = () => {
                     </CardContent>
                   </Card>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl">
+                <DialogContentWithoutClose className="max-w-2xl">
+                  <div className="flex justify-end">
+                    <DialogClose className="rounded-sm bg-transparent hover:bg-[--muted] backdrop-blur-sm border text-[--primary] transition-all duration-300 outline-none disabled:pointer-events-none p-2">
+                      <X className="h-4 w-4" />
+                      <span className="sr-only">Close</span>
+                    </DialogClose>
+                  </div>
                   <DialogHeader>
                     <DialogTitle className="text-2xl">{project.title}</DialogTitle>
                   </DialogHeader>
@@ -403,7 +447,7 @@ const Index = () => {
                     />
                     <div>
                       <h4 className="font-semibold text-lg mb-2">Description</h4>
-                      <p className="text-gray-300">{project.description}</p>
+                      <p className="text-[--secondary-foreground]">{project.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.map((tech) => (
@@ -419,7 +463,7 @@ const Index = () => {
                           <Button 
                             key={index} 
                             variant={index === 0 ? "default" : "outline"}
-                            className={index === 0 ? "bg-[--foreground] text-[--background] hover:bg-[--muted]" : ""}
+                            className={index === 0 ? "bg-[--foreground] text-[--background] hover:bg-[--muted-foreground]" : ""}
                             asChild
                           >
                             <a href={button.url} target="_blank" rel="noopener noreferrer">
@@ -431,7 +475,7 @@ const Index = () => {
                       })}
                     </div>
                   </div>
-                </DialogContent>
+                </DialogContentWithoutClose>
               </Dialog>
             ))}
           </div>
@@ -440,8 +484,11 @@ const Index = () => {
         <Separator className="my-16" />
 
         {/* Reading List Section */}
-        <section className="py-8">
-          <h3 className="text-2xl font-medium text-white mb-8">📚 reading list</h3>
+        <section 
+          className={`py-8 fade-in-section ${visibleSections.has('reading') ? 'visible' : ''}`}
+          data-section-id="reading"
+        >
+          <h3 className="text-2xl font-medium text-[--foreground] mb-8">📚 reading list</h3>
           
           {/* Currently Reading */}
           <div className="mb-8">
@@ -466,7 +513,7 @@ const Index = () => {
 
           {/* To Read */}
           <div>
-            <h4 className="text-lg font-medium text-[--primary] mb-4">to read</h4>
+            <h4 className="text-lg font-medium text-[--primary] mb-4">up next</h4>
             <div className="space-y-4">
               {toRead.map((book, index) => (
                 <div key={index} className="flex gap-4 p-4 rounded-lg border border-[--border] hover:bg-[--card] transition-colors">
