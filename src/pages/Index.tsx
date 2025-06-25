@@ -286,7 +286,9 @@ const Index = () => {
           </div>
           
           <p className="text-center text-[--muted-foreground]">
-            me [at] leonro.de
+            <a href="mailto:me@leonro.de" className="hover:text-[--secondary-foreground] transition-colors">
+              me [at] leonro.de
+            </a>
           </p>
         </section>
 
@@ -295,7 +297,6 @@ const Index = () => {
         {/* Currently working on */}
         <section 
           className={`py-8 fade-in-section ${visibleSections.has('wip') ? 'visible' : ''}`} 
-          id="projects"
           data-section-id="wip"
         >
           <h3 className="text-2xl font-medium text-[--primary] mb-8">🚧 currently working on</h3>
@@ -394,7 +395,7 @@ const Index = () => {
           </div>
         </section>
 
-        <Separator className="my-16" />
+        <Separator className="my-16" id="projects"/>
 
         {/* Projects Section */}
         <section 
@@ -532,7 +533,56 @@ const Index = () => {
             </div>
           </div>
         </section>
+        <Separator className="my-16" />
+
+        {/* Contact Footer */}
+        <footer className="bg-[--background]">
+          <div className="container mx-auto px-4">
+            <div className="text-center space-y-8">
+              <div>
+                <h2 className="text-2xl text-[--secondary-foreground] mb-4">get in touch</h2>
+              </div>
+              
+              <div className="flex justify-center space-x-6">
+                <a 
+                  href="mailto:me@leonro.de" 
+                  className="flex items-center space-x-2 text-[--muted-foreground] hover:text-[--secondary-foreground] transition-colors"
+                >
+                  <span>me [at] leonro.de</span>
+                </a>
+              </div>
+
+              <div className="flex justify-center space-x-4">
+                <Button 
+                    variant="ghost"
+                    size="sm" 
+                    className={`bg-transparent hover:bg-[--muted] backdrop-blur-sm border text-[--primary] transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
+                    <a href="https://github.com/leonrode" target="_blank" rel="noopener noreferrer">
+                      <Github className="h-4 w-4" />
+                    </a>
+                </Button>
+                <Button 
+                    variant="ghost"
+                    size="sm"
+                    className={`bg-transparent hover:bg-[--muted] backdrop-blur-sm border text-[--primary] transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
+                    <a href="https://www.linkedin.com/in/leon-rode/" target="_blank" rel="noopener noreferrer">
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                </Button>
+              </div>
+
+              
+            </div>
+            <Separator className="my-8" />
+            <div className="mb-8 flex justify-center">
+                <p className="text-sm text-[--muted-foreground]">
+                  © 2024 Leon Rode. Built with React, TypeScript, and Tailwind CSS.
+                </p>
+              </div>
+          </div>
+        </footer>
       </main>
+
     </div>
   );
 };
