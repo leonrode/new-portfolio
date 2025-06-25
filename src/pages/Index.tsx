@@ -34,7 +34,7 @@ const Index = () => {
         "collaborated with engineers to improve performance of web-based demo page"
       ],
       technologies: ["nextjs", "typescript", "agentic ai", "api dev", "web dev"],
-      image: "/neuralseek.jpeg"
+      image: "/logos/neuralseek.jpeg"
     },
     {
       title: "conversational AI",
@@ -45,7 +45,7 @@ const Index = () => {
         "built advanced JavaScript APIs interfacing with NexHealth for synchronization with EHR systems",
       ],
       technologies: ["javascript", "node.js", "api dev"],
-      image: "/gettalky.jpeg"
+      image: "/logos/gettalky.jpeg"
     }
   ];
 
@@ -53,44 +53,101 @@ const Index = () => {
     {
       id: 1,
       title: "quantum amplitude estimation",
-      summary: "quantum computing algorithm",
-      image: "/amplitude-est.png",
-      technologies: ["python", "jupyter", "quantum computing", "linear algebra", "physics"],
+      summary: "quantum algorithm implementation",
+      image: "/projects/amplitude-est.png",
+      technologies: ["python", "jupyter", "quantum computing", "qiskit", "linear algebra", "physics"],
       description: "implemented an algorithm to estimate a basis amplitude for a quantum state",
-      liveDemo: "#",
-      sourceCode: "#"
+      buttons: [
+        { label: "view notebook", url: "https://github.com/leonrode/qindia-qa101-final-project/blob/main/QA101Final.ipynb", icon: "ExternalLink" }
+      ]
     },
     {
       id: 2,
-      title: "Smart Campus Navigator",
-      summary: "An AI-powered mobile app for campus navigation and resource discovery.",
-      image: "/amplitude-est.png",
-      technologies: ["React Native", "Firebase", "Python", "TensorFlow"],
-      description: "A mobile application that uses computer vision and machine learning to help students navigate campus, find available study spaces, and locate resources in real-time.",
-      liveDemo: "#",
-      sourceCode: "#"
+      title: "quantum double slit experiment",
+      summary: "double slit experiment simulation",
+      image: "/projects/double-slit.png",
+      technologies: ["python", "quantum computing", "qiskit", "latex", "linear algebra", "physics"],
+      description: "simulated a double slit experiment on a quantum computer and mathematically verified results. wrote an informal paper on the topic.",
+      buttons: [
+        { label: "view paper", url: "https://github.com/leonrode/quantum-double-slit-experiment/blob/main/Leon%20Rode%20-%20Double%20Slit%20Experiment%20Using%20a%20Quantum%20Computer.pdf", icon: "ExternalLink" }
+      ]
     },
     {
       id: 3,
-      title: "Distributed Ray Tracer",
-      summary: "A parallelized ray tracing engine for photorealistic 3D rendering.",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
-      technologies: ["C++", "OpenMPI", "GLSL", "CMake"],
-      description: "A distributed ray tracing system that leverages multiple cores and machines to render complex 3D scenes with realistic lighting, shadows, and reflections.",
-      liveDemo: "#",
-      sourceCode: "#"
+      title: "LAVCA AI for patria investments",
+      summary: "AI chatbot for investment research",
+      image: "/projects/patria.png",
+      technologies: ["vite", "tailwind", "recharts", "full stack"],
+      description: "developed an LLM-based platform for Patria Investments for the analysis of the LAVCA dataset",
+      buttons: [
+        { label: "view demo", url: "https://patria-project.vercel.app/", icon: "ExternalLink" }
+      ]
+    },
+    {
+      id: 4,
+      title: "westchester covid-19 tracker",
+      summary: "local covid-19 case tracker + statistics",
+      image: "/projects/westchester.png",
+      technologies: ["nextjs", "tailwind", "aws lambda", "mongodb", "full stack"],
+      description: "built website as community service project to visualize covid-19 trends in westchester county, new york. the site collected data between november 2020 and december 2022, collecting case data for each town within the county on a daily basis, storing them in mongodb. the site was hosted on vercel and used aws lambda to fetch data from the new york state.",
+      buttons: [
+        { label: "view website", url: "https://westchestercovidtracker-com.vercel.app/", icon: "ExternalLink" },
+        { label: "view source", url: "https://github.com/leonrode/westchestercovidtracker.com", icon: "Code2" }
+      ]
+    },
+    {
+      id: 5,
+      title: "disturb the noize",
+      summary: "global social platform for musicians",
+      image: "/projects/dtn.png",
+      technologies: ["nextjs", "tailwind", "mongodb"],
+      description: "developed and managed global social platform to connect up-and-coming musicians and producers.",
+      buttons: [
+        { label: "view website", url: "https://disturbthenoize.com/", icon: "ExternalLink" },
+      ]
+    },
+    {
+      id: 6,
+      title: "electric field visualizer",
+      summary: "mini project to compute and draw electric field lines",
+      image: "/projects/efield.png",
+      technologies: ["p5js", "javascript", "physics", ],
+      description: "built a mini project to compute and draw electric field lines based on a number of charges in a plane",
+      buttons: [
+        { label: "view demo", url: "https://leonrode.github.io/electric-field-visualizer/", icon: "ExternalLink" },
+        { label: "view source", url: "https://github.com/leonrode/electric-field-visualizer", icon: "Code2" }
+      ]
+    },
+    {
+      id: 7,
+      title: "better joystick",
+      summary: "joystick interface arduino library",
+      image: "/projects/joystick.png",
+      technologies: ["c++", "arduino"],
+      description: "built a small Arduino library to interface dual-axis joysticks for Arduino boards",
+      buttons: [
+        { label: "view library", url: "https://docs.arduino.cc/libraries/better-joystick/", icon: "ExternalLink" },
+        { label: "view source", url: "https://github.com/leonrode/better-joystick", icon: "Code2" }
+      ]
     }
   ];
 
-  const interests = [
-    { name: "3D Printing", icon: "🖨️" },
-    { name: "Amateur Astronomy", icon: "🔭" },
-    { name: "Reading Sci-Fi", icon: "📚" },
-    { name: "Hiking", icon: "🥾" },
-    { name: "Coffee Brewing", icon: "☕" },
-    { name: "Electronic Music", icon: "🎵" },
-    { name: "Photography", icon: "📸" },
-    { name: "Chess", icon: "♟️" }
+  const currentlyReading = [
+    {
+      title: "A History of the Internet and the Digital Future",
+      author: "Johnny Ryan",
+      cover: "/books/internet-history.jpg",
+      thoughts: "fascinating exploration of the history of the internet and the digital future. the book is a great timeline of how the decentralized internet came to be, how packet-switched networks grew to dominate the internet, and how inter-network protocols were created and documented in RFCs."
+    },
+  ];
+
+  const toRead = [
+    {
+      title: "The Organization Man",
+      author: "William H. Whyte",
+      cover: "/books/organization-man.jpg",
+      thoughts: "thorough description of the impact of mass organization on American society."
+    },
   ];
 
   const wipProjects = [
@@ -178,7 +235,7 @@ const Index = () => {
               leon rode '28
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed max-w-xl mx-auto">
-             cs & physics @ stony brook honors college
+             cs & physics @ stony brook university honors college
             </p>
           </div>
           
@@ -212,7 +269,7 @@ const Index = () => {
 
         {/* Currently working on */}
         <section className="py-8" id="projects">
-          <h3 className="text-2xl font-medium text-[--primary] mb-8">currently working on</h3>
+          <h3 className="text-2xl font-medium text-[--primary] mb-8">🚧 currently working on</h3>
           <div className="space-y-8">
             {wipProjects.map((proj, index) => (
               <div className="flex items-start gap-4" key={index}>
@@ -257,7 +314,7 @@ const Index = () => {
 
         {/* GitHub Activity Section */}
         <section className="py-8">
-          <h3 className="text-2xl font-medium text-[--primary] mb-8">activity</h3>
+          <h3 className="text-2xl font-medium text-[--primary] mb-8">📊 activity</h3>
           <GitHubActivity />
         </section>
 
@@ -265,7 +322,7 @@ const Index = () => {
 
         {/* Experience Section */}
         <section className="py-8">
-          <h3 className="text-2xl font-medium text-white mb-8">work experience</h3>
+          <h3 className="text-2xl font-medium text-white mb-8">💼 work experience</h3>
           <div className="space-y-8">
             {experiences.map((exp, index) => (
               <div className="flex items-start gap-4">
@@ -306,7 +363,7 @@ const Index = () => {
 
         {/* Projects Section */}
         <section className="py-8">
-          <h3 className="text-2xl font-medium text-white mb-8">projects</h3>
+          <h3 className="text-2xl font-medium text-white mb-8">🛠️ projects</h3>
           <div className="space-y-6">
             {projects.map((project) => (
               <Dialog key={project.id}>
@@ -342,7 +399,7 @@ const Index = () => {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-64 object-cover rounded-lg"
+                      className="w-full h-64 object-cover object-top-left rounded-lg"
                     />
                     <div>
                       <h4 className="font-semibold text-lg mb-2">Description</h4>
@@ -356,18 +413,22 @@ const Index = () => {
                       ))}
                     </div>
                     <div className="flex gap-4">
-                      <Button asChild>
-                        <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </a>
-                      </Button>
-                      <Button variant="outline" asChild>
-                        <a href={project.sourceCode} target="_blank" rel="noopener noreferrer">
-                          <Code2 className="mr-2 h-4 w-4" />
-                          Source Code
-                        </a>
-                      </Button>
+                      {project.buttons.map((button, index) => {
+                        const IconComponent = button.icon === "ExternalLink" ? ExternalLink : Code2;
+                        return (
+                          <Button 
+                            key={index} 
+                            variant={index === 0 ? "default" : "outline"}
+                            className={index === 0 ? "bg-[--foreground] text-[--background] hover:bg-[--muted]" : ""}
+                            asChild
+                          >
+                            <a href={button.url} target="_blank" rel="noopener noreferrer">
+                              <IconComponent className="h-4 w-4" />
+                              {button.label}
+                            </a>
+                          </Button>
+                        );
+                      })}
                     </div>
                   </div>
                 </DialogContent>
@@ -378,19 +439,50 @@ const Index = () => {
 
         <Separator className="my-16" />
 
-        {/* Interests Section */}
+        {/* Reading List Section */}
         <section className="py-8">
-          <h3 className="text-2xl font-medium text-white mb-8">Interests</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {interests.map((interest, index) => (
-              <div
-                key={index}
-                className="text-center p-4 rounded-lg border border-gray-700 hover:bg-gray-900 transition-colors"
-              >
-                <div className="text-2xl mb-2">{interest.icon}</div>
-                <p className="text-sm text-gray-300">{interest.name}</p>
-              </div>
-            ))}
+          <h3 className="text-2xl font-medium text-white mb-8">📚 reading list</h3>
+          
+          {/* Currently Reading */}
+          <div className="mb-8">
+            <h4 className="text-lg font-medium text-[--primary] mb-4">currently reading</h4>
+            <div className="space-y-4">
+              {currentlyReading.map((book, index) => (
+                <div key={index} className="flex gap-4 p-4 rounded-lg border border-[--border] hover:bg-[--card] transition-colors">
+                  <img
+                    src={book.cover}
+                    alt={`${book.title} cover`}
+                    className="w-16 h-24 object-cover rounded shadow-md"
+                  />
+                  <div className="flex-1">
+                    <h5 className="text-lg font-medium text-[--primary] mb-1">{book.title}</h5>
+                    <p className="text-[--muted-foreground] text-sm mb-3">by {book.author}</p>
+                    <p className="text-[--secondary-foreground] text-sm leading-relaxed">{book.thoughts}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* To Read */}
+          <div>
+            <h4 className="text-lg font-medium text-[--primary] mb-4">to read</h4>
+            <div className="space-y-4">
+              {toRead.map((book, index) => (
+                <div key={index} className="flex gap-4 p-4 rounded-lg border border-[--border] hover:bg-[--card] transition-colors">
+                  <img
+                    src={book.cover}
+                    alt={`${book.title} cover`}
+                    className="w-16 h-24 object-cover rounded shadow-md"
+                  />
+                  <div className="flex-1">
+                    <h5 className="text-lg font-medium text-[--primary] mb-1">{book.title}</h5>
+                    <p className="text-[--muted-foreground] text-sm mb-3">by {book.author}</p>
+                    <p className="text-[--secondary-foreground] text-sm leading-relaxed">{book.thoughts}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
