@@ -33,8 +33,7 @@ const GitHubActivity = () => {
       // find the index of the day of the first contribution
       const firstContribution = contributions[0];
       const firstContributionDay = new Date(firstContribution.date).getDay() + 1;
-      console.log(firstContribution);
-      console.log(firstContributionDay);
+
       let ind = [];
       for (let i = 0; i < 7; i++) {
         ind.push((firstContributionDay + i) % 7);
@@ -89,7 +88,7 @@ const GitHubActivity = () => {
           {/* Activity squares */}
           <div className="flex gap-1">
                 {activityData.map((week, weekIndex) => (
-                  <div className="flex flex-col gap-1 relative">
+                  <div key={weekIndex} className="flex flex-col gap-1 relative">
                     <p className="text-xs text-[--muted-foreground] absolute -top-5 left-0">
                       {Object.keys(monthIndices).includes(weekIndex.toString()) ? months[monthIndices[weekIndex]] : ""}
                     </p>

@@ -203,7 +203,7 @@ const Index = () => {
       dates: "may 2025 - present",
       achievements: [
         "building a simple quantum circuit simulator in pure C",
-        "implenting multi-qubit gates and implementing quantum algorithms",
+        "implementing multi-qubit gates and implementing quantum algorithms",
         "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
       ],
       technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
@@ -216,7 +216,7 @@ const Index = () => {
       dates: "jun 2025 - present",
       achievements: [
         "building a simple web proxy in C",
-        "fowards HTTP GETs to a web server and caches returned objects in files",
+        "forwards HTTP GETs to a web server and caches returned objects in files",
         "application of sockets, DNS, HTTP, file IO",
       ],
       technologies: ["c", "make", "networking", "c sockets"],
@@ -396,7 +396,7 @@ const Index = () => {
           <h3 className="text-2xl font-medium text-[--foreground] mb-8">💼 work experience</h3>
           <div className="space-y-8">
             {experiences.map((exp, index) => (
-              <div className="flex items-start gap-4">
+              <div key={index} className="flex items-start gap-4">
                 <img src={exp.image} alt={exp.company} className="w-16 h-16 object-cover rounded-lg" />
                 <div key={index} className="border-l-2 border-[--border] pl-6">
                   <div className="space-y-2 mb-4">
