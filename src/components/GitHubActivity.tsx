@@ -5,6 +5,7 @@ const GitHubActivity = () => {
   const [numContributions, setNumContributions] = useState<number>(0);
   const [activityData, setActivityData] = useState<{date: string, count: number, level: number}[][]>([]);
   const [monthIndices, setMonthIndices] = useState<Record<number, number>>({});
+  const [dayIndices, setDayIndices] = useState<number[]>([]);
   const DAYS_BACK = window.matchMedia("(max-width: 767px)").matches ? 112 : 256;
 
   
@@ -28,6 +29,18 @@ const GitHubActivity = () => {
           m[i] = new Date(weeks[i + 1][0].date).getMonth();
         }
       }
+
+      // find the index of the day of the first contribution
+      const firstContribution = contributions[0];
+      const firstContributionDay = new Date(firstContribution.date).getDay() + 1;
+      console.log(firstContribution);
+      console.log(firstContributionDay);
+      let ind = [];
+      for (let i = 0; i < 7; i++) {
+        ind.push((firstContributionDay + i) % 7);
+      }
+      setDayIndices(ind);
+
       setNumContributions(count)
       setMonthIndices(m);
       setActivityData(weeks);
@@ -62,13 +75,13 @@ const GitHubActivity = () => {
         <div className="flex gap-1">
           {/* Day labels */}
           <div className="flex flex-col gap-1 mr-2">
-            {days.map((day, index) => (
+            {dayIndices.map((day, index) => (
               <div
                 key={day}
-                className="h-3 flex items-center text-xs text-[--muted-foreground]"
+                className="h-[13.5px] flex items-center text-xs text-[--muted-foreground]"
                 style={{ opacity: index % 2 === 0 ? 1 : 0 }}
               >
-                {index % 2 === 0 ? day : ""}
+                {index % 2 === 0 ? days[day] : ""}
               </div>
             ))}
           </div>

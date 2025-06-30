@@ -288,22 +288,22 @@ const Index = () => {
           </div>
           
           <div className="flex justify-center gap-4 mb-8">
-            <Button size="sm" className="bg-[--foreground] text-[--background] hover:bg-[--muted]">
+            <Button size="sm" className="bg-[--foreground] text-[--background] hover:bg-[--muted-foreground]">
               <a className="flex items-center" href="#projects" >
                 <FolderGit2 className="mr-2 h-4 w-4" />
-                Projects
+                projects
               </a>
             </Button>
             <Button variant="outline" size="sm">
               <a className="flex items-center" href="https://github.com/leonrode" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4" />
-                GitHub  
+                github  
               </a>
             </Button>
             <Button variant="outline" size="sm">
               <a className="flex items-center" href="https://www.linkedin.com/in/leon-rode/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="mr-2 h-4 w-4" />
-                LinkedIn
+                linkedin
               </a>
             </Button>
           </div>
@@ -611,7 +611,7 @@ const Index = () => {
             <Separator className="my-8" />
             <div className="mb-8 flex justify-center">
                 <p className="text-sm text-[--muted-foreground]">
-                  © 2024 Leon Rode. Built with React, TypeScript, and Tailwind CSS.
+                  © 2025 leon rode
                 </p>
               </div>
           </div>
