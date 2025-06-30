@@ -32,7 +32,7 @@ const GitHubActivity = () => {
 
       // find the index of the day of the first contribution
       const firstContribution = contributions[0];
-      const firstContributionDay = new Date(firstContribution.date).getDay() + 1;
+      const firstContributionDay = new Date(firstContribution.date).getUTCDay() === 0 ? 6 : new Date(firstContribution.date).getUTCDay() - 1;
 
       let ind = [];
       for (let i = 0; i < 7; i++) {
@@ -96,7 +96,7 @@ const GitHubActivity = () => {
                     <div
                       key={`${weekIndex}-${dayIndex}`}
                       className={`w-3 h-3 m-[0.7px] rounded-sm ${getActivityColor(activity.level)} hover:ring-2 hover:ring-gray-600 transition-all cursor-pointer`}
-                      title={`${activity.count} contributions on ${activity.date}`}
+                      title={`${activity.count} ${activity.count === 1 ? "contribution" : "contributions"} on ${new Date(activity.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`}
                     />
                     ))}
                   </div>
