@@ -25,14 +25,14 @@ const GitHubActivity = () => {
       // we find the first week index that representes a new month
       const m = {}
       for (let i = 0; i < weeks.length - 1; i++) {
-        if (new Date(weeks[i][0].date).getMonth() !== new Date(weeks[i + 1][0].date).getMonth()) {
-          m[i] = new Date(weeks[i + 1][0].date).getMonth();
+        if (new Date(weeks[i][0].date).getUTCMonth() !== new Date(weeks[i + 1][0].date).getUTCMonth()) {
+          m[i] = new Date(weeks[i + 1][0].date).getUTCMonth();
         }
       }
 
       // find the index of the day of the first contribution
       const firstContribution = contributions[0];
-      const firstContributionDay = new Date(firstContribution.date).getUTCDay() === 0 ? 6 : new Date(firstContribution.date).getUTCDay() - 1;
+      const firstContributionDay = new Date(firstContribution.date).getUTCDay();
 
       let ind = [];
       for (let i = 0; i < 7; i++) {
@@ -96,7 +96,7 @@ const GitHubActivity = () => {
                     <div
                       key={`${weekIndex}-${dayIndex}`}
                       className={`w-3 h-3 m-[0.7px] rounded-sm ${getActivityColor(activity.level)} hover:ring-2 hover:ring-gray-600 transition-all cursor-pointer`}
-                      title={`${activity.count} ${activity.count === 1 ? "contribution" : "contributions"} on ${new Date(activity.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`}
+                      title={`${activity.count} ${activity.count === 1 ? "contribution" : "contributions"} on ${months[new Date(activity.date).getUTCMonth()]} ${new Date(activity.date).getUTCDate()}`}
                     />
                     ))}
                   </div>
