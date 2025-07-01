@@ -437,7 +437,8 @@ const Index = () => {
           className={`py-8 fade-in-section ${visibleSections.has('projects') ? 'visible' : ''}`}
           data-section-id="projects"
         >
-          <h3 className="text-2xl font-medium text-[--foreground] mb-8">🛠️ projects</h3>
+          <h3 className="text-2xl font-medium text-[--foreground]">🛠️ projects</h3>
+          <p className="text-[--muted-foreground] text-sm mb-8 mt-4">select to view project details</p>
           <div className="space-y-6">
             {projects.map((project) => (
               <Dialog key={project.id}>
