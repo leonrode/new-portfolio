@@ -67,6 +67,8 @@ const GitHubActivity = () => {
         <Github className="h-5 w-5" />
         <span className="text-md text-[--muted-foreground]">leonrode - {numContributions} contributions in the last {DAYS_BACK === 256 ? "2⁸" : DAYS_BACK} days</span>
       </div>
+
+
       
       <div className="bg-[--card] rounded-lg px-5 pb-6 pt-8 border border-[--border]">
         
@@ -104,19 +106,31 @@ const GitHubActivity = () => {
           </div>
         </div>
         
-        {/* Legend */}
-        <div className="flex items-center justify-center mt-4 text-xs text-[--muted-foreground]">
-          <span>Less</span>
-          <div className="flex gap-1 mx-8">
-            {[0, 1, 2, 3, 4].map((level) => (
-              <div
-                key={level}
-                className={`w-3 h-3 rounded-sm ${getActivityColor(level)}`}
-              />
-            ))}
+        <div className="flex mt-4 justify-between items-center gap-2">
+          <span className="flex-1">
+
+          </span>
+          {/* Legend */}
+          <div className="flex flex-1 items-center justify-center text-xs text-[--muted-foreground]">
+            <span>Less</span>
+            <div className="flex gap-1 mx-4 md:mx-8">
+              {[0, 1, 2, 3, 4].map((level) => (
+                <div
+                  key={level}
+                  className={`w-3 h-3 rounded-sm ${getActivityColor(level)}`}
+                />
+              ))}
+            </div>
+            <span>More</span>
           </div>
-          <span>More</span>
+          <span className="flex-1 text-right text-xs md:text-sm text-[--muted-foreground]">
+            UTC <span className="hidden md:inline">timezone</span>
+          </span>
         </div>
+        
+      </div>
+      <div className="flex mt-4 items-center gap-2">
+        
       </div>
     </div>
   ) : (
