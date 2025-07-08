@@ -76,8 +76,9 @@ const Index = () => {
       location: "Remote",
       dates: "jun 2025 - present",
       achievements: [
-        "developed internal and client-facing demos of an abstract document-based AI agent",
-        "collaborated with engineers to improve performance of web-based demo page"
+        "develop and deploy three+ customer-facing AI agents, automating document-based workflows such as contract analysis, content summarization, and external communications (email/Slack) for a 50% increase in use efficiency", 
+        "architect and implement a Next.js-based demonstration application, integrating NeuralSeek’s mAIstro technology and API to showcase agent capabilities during client calls, directly contributing to customer conversions",
+        "build end-to-end use cases within the demonstration application, enabling seamless document upload, agent execution, and output rendering, satisfying sales-driven requirements independently"
       ],
       technologies: ["nextjs", "typescript", "agentic ai", "api dev", "web dev"],
       image: "/logos/neuralseek.jpeg"
@@ -88,7 +89,9 @@ const Index = () => {
       location: "Remote",
       dates: "jun 2025 - present",
       achievements: [
-        "built advanced JavaScript APIs interfacing with NexHealth for synchronization with EHR systems",
+        "execute the integration of API functionalities with NexHealth, enabling patient identity verification and personalized FAQ responses at a rate 80% quicker than manual processes",
+        "map and document conversational user journeys and integration points for Gemini’s function calling, mapping API invocations within conversational flows for appointment confirmation and advanced FAQs",
+        "research and apply NexHealth API documentation and Gemini Function Calling to enhance conversational AI, improving patient data retrieval and interaction efficiency"
       ],
       technologies: ["javascript", "node.js", "api dev"],
       image: "/logos/gettalky.jpeg"
