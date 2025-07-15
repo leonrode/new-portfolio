@@ -100,6 +100,17 @@ const Index = () => {
 
   const projects = [
     {
+      id: 0,
+      title: "quantum circuit simulator in C",
+      summary: "run simple quantum circuits + evaluate final qubit states",
+      image: "/projects/qsim.png",
+      technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
+      description: "qsim is a lightweight quantum circuit simulator written in C. It allows users to programmatically define quantum circuits, simulate their effect on a state vector, calculate measurement probabilities, and visualize the circuit's structure in the terminal. Successfully simulated the 2-qubit Deutsch-Jozsa algorithm, demonstrating the simulator's capability to execute fundamental quantum algorithms.",
+      buttons: [
+        { label: "view source", url: "https://github.com/leonrode/qsim", icon: "Code2" }
+      ]
+    },
+    {
       id: 1,
       title: "quantum amplitude estimation",
       summary: "quantum algorithm implementation",
@@ -200,19 +211,6 @@ const Index = () => {
   ];
 
   const wipProjects = [
-    {
-      title: "quantum circuit simulator in C",
-      company: "personal project",
-      dates: "may 2025 - present",
-      achievements: [
-        "building a simple quantum circuit simulator in pure C",
-        "implementing multi-qubit gates and implementing quantum algorithms",
-        "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
-      ],
-      technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
-      githubUrl: "https://github.com/leonrode/qsim",
-      shortUrl: "leonrode/qsim" // for fetching latest commits
-    },
     {
       title: "web proxy in C",
       company: "personal project",
