@@ -212,6 +212,19 @@ const Index = () => {
 
   const wipProjects = [
     {
+      title: "quantum circuit simulator in C",
+      company: "personal project",
+      dates: "may 2025 - present",
+      achievements: [
+        "building a simple quantum circuit simulator in pure C",
+        "implementing QFT and implementing quantum algorithms",
+        "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
+      ],
+      technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
+      githubUrl: "https://github.com/leonrode/qsim",
+      shortUrl: "leonrode/qsim" // for fetching latest commits
+    },
+    {
       title: "web proxy in C",
       company: "personal project",
       dates: "jun 2025 - present",
