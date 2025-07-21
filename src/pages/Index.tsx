@@ -105,7 +105,7 @@ const Index = () => {
       summary: "run simple quantum circuits + evaluate final qubit states",
       image: "/projects/qsim.png",
       technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
-      description: "qsim is a lightweight quantum circuit simulator written in C. It allows users to programmatically define quantum circuits, simulate their effect on a state vector, calculate measurement probabilities, and visualize the circuit's structure in the terminal. Successfully simulated the 2-qubit Deutsch-Jozsa algorithm, demonstrating the simulator's capability to execute fundamental quantum algorithms.",
+      description: "qsim is a quantum circuit simulator written in C, enabling users to define quantum circuits, compute state vectors, calculate output state probabilities, and visualize circuits directly in the terminal. Includes an implementation of the Quantum Phase Estimation (QPE) algorithm with an inverse Quantum Fourier Transform (QFT), demonstrating the simulator's capability to accurately model quantum phenomena. Designed and architected a modular system with a hierarchical structure of quantum circuits, layers, and operations, optimizing performance through a greedy layering algorithm and dynamic matrix generation for controlled gates.",
       buttons: [
         { label: "view source", url: "https://github.com/leonrode/qsim", icon: "Code2" }
       ]
@@ -194,11 +194,11 @@ const Index = () => {
 
   const currentlyReading = [
     {
-      title: "A History of the Internet and the Digital Future",
-      author: "Johnny Ryan",
-      cover: "/books/internet-history.jpg",
-      thoughts: "fascinating exploration of the history of the internet and the digital future. the book is a great timeline of how the decentralized internet came to be, how packet-switched networks grew to dominate the internet, and how inter-network protocols were created and documented in RFCs."
-    },
+      title: "Source Code: My Beginnings",
+      author: "Bill Gates",
+      cover: "/books/source-code.png",
+      thoughts: "A memoir of Bill Gates's early life and what influenced his path to success."
+    }
   ];
 
   const toRead = [
@@ -211,19 +211,19 @@ const Index = () => {
   ];
 
   const wipProjects = [
-    {
-      title: "quantum circuit simulator in C",
-      company: "personal project",
-      dates: "may 2025 - present",
-      achievements: [
-        "building a simple quantum circuit simulator in pure C",
-        "implementing QFT and implementing quantum algorithms",
-        "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
-      ],
-      technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
-      githubUrl: "https://github.com/leonrode/qsim",
-      shortUrl: "leonrode/qsim" // for fetching latest commits
-    },
+    // {
+    //   title: "quantum circuit simulator in C",
+    //   company: "personal project",
+    //   dates: "may 2025 - present",
+    //   achievements: [
+    //     "building a simple quantum circuit simulator in pure C",
+    //     "implementing QFT and implementing quantum algorithms",
+    //     "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
+    //   ],
+    //   technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
+    //   githubUrl: "https://github.com/leonrode/qsim",
+    //   shortUrl: "leonrode/qsim" // for fetching latest commits
+    // },
     {
       title: "web proxy in C",
       company: "personal project",
