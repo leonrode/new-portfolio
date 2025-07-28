@@ -211,32 +211,20 @@ const Index = () => {
   ];
 
   const wipProjects = [
-    // {
-    //   title: "quantum circuit simulator in C",
-    //   company: "personal project",
-    //   dates: "may 2025 - present",
-    //   achievements: [
-    //     "building a simple quantum circuit simulator in pure C",
-    //     "implementing QFT and implementing quantum algorithms",
-    //     "exploring future optimizations for simulation, including sparse matrix representation and qubit reordering"
-    //   ],
-    //   technologies: ["c", "make", "quantum computing", "linear algebra", "physics"],
-    //   githubUrl: "https://github.com/leonrode/qsim",
-    //   shortUrl: "leonrode/qsim" // for fetching latest commits
-    // },
     {
-      title: "web proxy in C",
-      company: "personal project",
-      dates: "jun 2025 - present",
+      title: "quantum machine learning (qml)",
+      company: "exploration",
+      dates: "jul 2025 — present",
       achievements: [
-        "building a simple web proxy in C",
-        "forwards HTTP GETs to a web server and caches returned objects in files",
-        "application of sockets, DNS, HTTP, file IO",
+        "exploring concepts within qml such as data encoding (state preparation), feature maps, quantum kernels, etc.",
+        "implementing these concepts in jupyter notebooks using pennylane",
+        "testing toy models like training a single qubit using variational circuits"
       ],
-      technologies: ["c", "make", "networking", "c sockets"],
-      githubUrl: "https://github.com/leonrode/web-proxy",
-      shortUrl: "leonrode/web-proxy" // for fetching latest commits
-    }
+      technologies: ["python", "jupyter", "quantum computing", "pennylane", "linear algebra", "physics"],
+      githubUrl: "https://github.com/leonrode/qml",
+      shortUrl: "leonrode/qml" // for fetching latest commits
+    },
+
   ];
 
   return (
