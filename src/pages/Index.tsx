@@ -71,19 +71,6 @@ const Index = () => {
 
   const experiences = [
     {
-      title: "agentic AI",
-      company: "NeuralSeek",
-      location: "Remote",
-      dates: "jun 2025 - present",
-      achievements: [
-        "develop and deploy three+ customer-facing AI agents, automating document-based workflows such as contract analysis, content summarization, and external communications (email/Slack) for a 50% increase in use efficiency", 
-        "architect and implement a Next.js-based demonstration application, integrating NeuralSeek’s mAIstro technology and API to showcase agent capabilities during client calls, directly contributing to customer conversions",
-        "build end-to-end use cases within the demonstration application, enabling seamless document upload, agent execution, and output rendering, satisfying sales-driven requirements independently"
-      ],
-      technologies: ["nextjs", "typescript", "agentic ai", "api dev", "web dev"],
-      image: "/logos/neuralseek.jpeg"
-    },
-    {
       title: "conversational AI",
       company: "Get Talky",
       location: "Remote",
@@ -95,7 +82,20 @@ const Index = () => {
       ],
       technologies: ["javascript", "node.js", "api dev"],
       image: "/logos/gettalky.jpeg"
-    }
+    },
+    {
+      title: "agentic AI",
+      company: "NeuralSeek",
+      location: "Remote",
+      dates: "jun 2025 - aug 2025",
+      achievements: [
+        "develop and deploy three+ customer-facing AI agents, automating document-based workflows such as contract analysis, content summarization, and external communications (email/Slack) for a 50% increase in use efficiency", 
+        "architect and implement a Next.js-based demonstration application, integrating NeuralSeek’s mAIstro technology and API to showcase agent capabilities during client calls, directly contributing to customer conversions",
+        "build end-to-end use cases within the demonstration application, enabling seamless document upload, agent execution, and output rendering, satisfying sales-driven requirements independently"
+      ],
+      technologies: ["nextjs", "typescript", "agentic ai", "api dev", "web dev"],
+      image: "/logos/neuralseek.jpeg"
+    },
   ];
 
   const projects = [
@@ -200,6 +200,16 @@ const Index = () => {
       thoughts: "A memoir of Bill Gates's early life and what influenced his path to success."
     }
   ];
+  
+  const read = [
+    
+    {
+      title: "Source Code: My Beginnings",
+      author: "Bill Gates",
+      cover: "/books/source-code.png",
+      thoughts: "A memoir of Bill Gates's early life and what influenced his path to success."
+    }
+  ]
 
   const toRead = [
     {
@@ -527,11 +537,11 @@ const Index = () => {
           className={`py-8 fade-in-section ${visibleSections.has('reading') ? 'visible' : ''}`}
           data-section-id="reading"
         >
-          <h3 className="text-2xl font-medium text-[--foreground] mb-8">📚 reading list</h3>
+          <h3 className="text-2xl font-medium text-[--foreground] mb-4">📚 bookshelf</h3>
           
           {/* Currently Reading */}
-          <div className="mb-8">
-            <h4 className="text-lg font-medium text-[--primary] mb-4">currently reading</h4>
+          <div className="mb-4">
+            <h4 className="text-lg font-medium text-[--primary] my-4">currently reading</h4>
             <div className="space-y-4">
               {currentlyReading.map((book, index) => (
                 <div key={index} className="flex gap-4 p-4 rounded-lg border border-[--border] hover:bg-[--card] transition-colors">
@@ -570,6 +580,28 @@ const Index = () => {
               ))}
             </div>
           </div>
+
+          {/* Read */}
+          <div>
+            <h4 className="text-lg font-medium text-[--primary] my-4">read</h4>
+            <div className="space-y-4">
+              {read.map((book, index) => (
+                <div key={index} className="flex gap-4 p-4 rounded-lg border border-[--border] hover:bg-[--card] transition-colors">
+                  <img
+                    src={book.cover}
+                    alt={`${book.title} cover`}
+                    className="w-16 h-24 object-cover rounded shadow-md"
+                  />
+                  <div className="flex-1">
+                    <h5 className="text-lg font-medium text-[--primary] mb-1">{book.title}</h5>
+                    <p className="text-[--muted-foreground] text-sm mb-3">by {book.author}</p>
+                    <p className="text-[--secondary-foreground] text-sm leading-relaxed">{book.thoughts}</p>
+                  </div>
+                </div>
+              ))}
+            </div>  
+          </div>
+
         </section>
         <Separator className="my-16" />
 
