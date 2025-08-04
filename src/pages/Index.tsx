@@ -193,12 +193,7 @@ const Index = () => {
   ];
 
   const currentlyReading = [
-    {
-      title: "Source Code: My Beginnings",
-      author: "Bill Gates",
-      cover: "/books/source-code.png",
-      thoughts: "A memoir of Bill Gates's early life and what influenced his path to success."
-    }
+
   ];
   
   const read = [
@@ -540,7 +535,7 @@ const Index = () => {
           <h3 className="text-2xl font-medium text-[--foreground] mb-4">📚 bookshelf</h3>
           
           {/* Currently Reading */}
-          <div className="mb-4">
+          {currentlyReading.length > 0 && <div className="mb-4">
             <h4 className="text-lg font-medium text-[--primary] my-4">currently reading</h4>
             <div className="space-y-4">
               {currentlyReading.map((book, index) => (
@@ -558,10 +553,10 @@ const Index = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div>}
 
           {/* To Read */}
-          <div>
+          {toRead.length > 0 && <div>
             <h4 className="text-lg font-medium text-[--primary] mb-4">up next</h4>
             <div className="space-y-4">
               {toRead.map((book, index) => (
@@ -579,10 +574,10 @@ const Index = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div>}
 
           {/* Read */}
-          <div>
+          {read.length > 0 && <div>
             <h4 className="text-lg font-medium text-[--primary] my-4">read</h4>
             <div className="space-y-4">
               {read.map((book, index) => (
@@ -600,7 +595,7 @@ const Index = () => {
                 </div>
               ))}
             </div>  
-          </div>
+          </div>}
 
         </section>
         <Separator className="my-16" />
