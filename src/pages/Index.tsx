@@ -100,6 +100,17 @@ const Index = () => {
 
   const projects = [
     {
+      id: -1,
+      title: "aegis - an AI digital assistant",
+      summary: "an AI digital assistant that answers user queries and provides information about the user's digital life",
+      image: "/projects/aegis.png",
+      technologies: ["python", "ai", "mcp", "gemini", "google cloud platform"],
+      description: "Aegis is an AI digital assistant that engages with users and provides information about the user's digital life. The assistant is built with the Gemini API and the Google Cloud Platform.",
+      buttons: [
+        { label: "view source", url: "https://github.com/leonrode/aegis", icon: "Code2" }
+      ]
+    },
+    {
       id: 0,
       title: "quantum circuit simulator in C",
       summary: "run simple quantum circuits + evaluate final qubit states",
