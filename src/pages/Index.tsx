@@ -74,13 +74,13 @@ const Index = () => {
       title: "conversational AI",
       company: "Get Talky",
       location: "Remote",
-      dates: "jun 2025 - present",
+      dates: "jun 2025 - aug 2025",
       achievements: [
-        "execute the integration of API functionalities with NexHealth, enabling patient identity verification and personalized FAQ responses at a rate 80% quicker than manual processes",
-        "map and document conversational user journeys and integration points for Gemini’s function calling, mapping API invocations within conversational flows for appointment confirmation and advanced FAQs",
-        "research and apply NexHealth API documentation and Gemini Function Calling to enhance conversational AI, improving patient data retrieval and interaction efficiency"
+        "executed the integration of API functionalities with NexHealth, enabling patient identity verification and personalized FAQ responses at a rate 80% quicker than manual processes",
+        "mapped and documented conversational user journeys and integration points for Gemini’s function calling, mapping API invocations within conversational flows for appointment confirmation and advanced FAQs",
+        "developed a cross-platform agentic architecture to automate Electronic Health System workflows, orchestrating a grounding agent, planning agent, and executor agent with PyAutoGUI, and incorporating a reflection stage for self-correction"
       ],
-      technologies: ["javascript", "node.js", "api dev"],
+      technologies: ["python", "agentic ai", "computer use agents", "openai","javascript", "node.js", "api dev"],
       image: "/logos/gettalky.jpeg"
     },
     {
@@ -89,9 +89,9 @@ const Index = () => {
       location: "Remote",
       dates: "jun 2025 - aug 2025",
       achievements: [
-        "develop and deploy three+ customer-facing AI agents, automating document-based workflows such as contract analysis, content summarization, and external communications (email/Slack) for a 50% increase in use efficiency", 
-        "architect and implement a Next.js-based demonstration application, integrating NeuralSeek’s mAIstro technology and API to showcase agent capabilities during client calls, directly contributing to customer conversions",
-        "build end-to-end use cases within the demonstration application, enabling seamless document upload, agent execution, and output rendering, satisfying sales-driven requirements independently"
+        "developed and deployed three+ customer-facing AI agents, automating document-based workflows such as contract analysis, content summarization, and external communications (email/Slack) for a 50% increase in use efficiency", 
+        "architected and implemented a Next.js-based demonstration application, integrating NeuralSeek’s mAIstro technology and API to showcase agent capabilities during client calls, directly contributing to customer conversions",
+        "built end-to-end use cases within the demonstration application, enabling seamless document upload, agent execution, and output rendering, satisfying sales-driven requirements independently"
       ],
       technologies: ["nextjs", "typescript", "agentic ai", "api dev", "web dev"],
       image: "/logos/neuralseek.jpeg"
@@ -216,6 +216,19 @@ const Index = () => {
   ];
 
   const wipProjects = [
+    {
+      title: "aegis - a proactive AI digital assistant",
+      company: "personal project",
+      dates: "aug 2025 - present",
+      achievements: [
+        "developing an AI digital assistant that proactively engages with users, providing information, answering questions, and assisting with tasks",
+        "dynamically integrate with new MCP services",
+        "using the Gemini API to power the assistant's responses"
+      ],
+      technologies: ["python", "ai", "mcp", "gemini", "google cloud platform"],
+      githubUrl: "https://github.com/leonrode/aegis",
+      shortUrl: "leonrode/aegis" // for fetching latest commits
+    },
     {
       title: "quantum machine learning (qml)",
       company: "exploration",
