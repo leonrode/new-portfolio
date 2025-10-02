@@ -205,6 +205,12 @@ const Index = () => {
 
   const currentlyReading = [
 
+    {
+      title: "The fabric of reality: the science of parallel universes",
+      "author": "David Deutsch",
+      "cover": "/books/fabric-of-reality.jpg",
+      "thoughts": "excited about this one."
+    }
   ];
   
   const read = [
@@ -227,19 +233,6 @@ const Index = () => {
   ];
 
   const wipProjects = [
-    {
-      title: "aegis - a proactive AI digital assistant",
-      company: "personal project",
-      dates: "aug 2025 - present",
-      achievements: [
-        "developing an AI digital assistant that proactively engages with users, providing information, answering questions, and assisting with tasks",
-        "dynamically integrate with new MCP services",
-        "using the Gemini API to power the assistant's responses"
-      ],
-      technologies: ["python", "ai", "mcp", "gemini", "google cloud platform"],
-      githubUrl: "https://github.com/leonrode/aegis",
-      shortUrl: "leonrode/aegis" // for fetching latest commits
-    },
     {
       title: "quantum machine learning (qml)",
       company: "exploration",
