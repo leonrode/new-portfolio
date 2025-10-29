@@ -100,6 +100,18 @@ const Index = () => {
 
   const projects = [
     {
+      id: -2,
+      title: "echopilot",
+      summary: "hackharvard 2025 entry - real-time conversation analyzer with suggestion generation for targeted conversation outcome",
+      image: "/projects/echopilot.png",
+      technologies: ["python", "ai", "gemini", "google cloud platform", "expo", "react native", "websockets"],
+      description: "echopilot is a real-time conversation analyzer with suggestion generation for targeted conversation outcome (e.g. to continue threads: \"Ask more about their trip to Japan.\" or to pivot gracefully: \"They mentioned soccer earlier, you could bring that up.\"). built with the Gemini API and the Google Cloud Platform.",
+      buttons: [
+        { label: "view source", url: "https://github.com/leonrode/hackharvard", icon: "Code2" },
+        { label: "view demo (devpost)", url: "https://devpost.com/software/echopilot-63atsu", icon: "ExternalLink" },
+      ]
+    },
+    {
       id: -1,
       title: "aegis - an AI digital assistant",
       summary: "an AI digital assistant that answers user queries and provides information about the user's digital life",
@@ -234,6 +246,19 @@ const Index = () => {
 
   const wipProjects = [
     {
+      "title": "quantum search + hamiltonian circuit",
+      "company": "exploration",
+      "dates": "oct 2025 — present",
+      "achievements": [
+        "exploring how quantum search provides quadratic speedup over brute force in some NP-complete problems like the Hamiltonian path problem",
+        "designing oracle circuit from scratch and implementing Grover's algorithm around it using Qiskit",
+        "building full-stack app enabling users to input a graph and see the search happen live, dynamically building the oracle based on the graph",
+      ],
+      technologies: ["quantum computing","python", "qiskit", "full stack", "react", "nextjs", "tailwind"],
+      githubUrl: "https://github.com/leonrode/quantum-hamiltonian-circuit",
+      shortUrl: "leonrode/quantum-hamiltonian-circuit" // for fetching latest commits
+    },
+    {
       title: "quantum machine learning (qml)",
       company: "exploration",
       dates: "jul 2025 — present",
@@ -246,6 +271,7 @@ const Index = () => {
       githubUrl: "https://github.com/leonrode/qml",
       shortUrl: "leonrode/qml" // for fetching latest commits
     },
+    
 
   ];
 
