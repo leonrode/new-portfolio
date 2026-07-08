@@ -71,6 +71,26 @@ const Index = () => {
 
   const experiences = [
     {
+      title: "intern",
+      company: "U.S. Government",
+      location: "Washington Metropolitan Area",
+      dates: "jun 2026 - aug 2026",
+      achievements: ["research"],
+      technologies: [],
+      image: ""
+    },
+    {
+      title: "student researcher - quantum networking",
+      company: "Stony Brook University",
+      location: "Stony Brook, NY",
+      dates: "feb 2026 - present",
+      achievements: [
+        "trained a deep Q-network model to achieve a 100.0% success rate and 54% performance advantage over baseline algorithms under severe, unpredictable signal degradation by designing a progressive curriculum training pipeline that incrementally exposes the AI agent to highly volatile network states, as measured by stress-test sweeps of increasing noise",
+       "derived a novel deterministic scheduling policy achieving 30% faster completion times by utilizing an LLM to extract rule-base heuristics directly from the DQN’s state-action execution traces, as measured by 100-episode benchmark simulations validating a 100.0%success rate"
+    ],
+    image: "/logos/sbu.png"
+    },
+    {
       title: "conversational AI",
       company: "Get Talky",
       location: "Remote",
@@ -447,7 +467,7 @@ const Index = () => {
           <div className="space-y-8">
             {experiences.map((exp, index) => (
               <div key={index} className="flex items-start gap-4">
-                <img src={exp.image} alt={exp.company} className="w-16 h-16 object-cover rounded-lg" />
+                {exp.image ? <img src={exp.image} alt={exp.company} className="w-16 h-16 object-cover rounded-lg" /> : <div className="w-16 h-16 bg-[--border] rounded-lg flex items-center justify-center text-[--muted-foreground] text-sm">—</div>}
                 <div key={index} className="border-l-2 border-[--border] pl-6">
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2">
